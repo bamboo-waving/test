@@ -1,325 +1,233 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>指尖暖光·手工启智 - 用指尖点亮童年，用手工滋养成长</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Microsoft YaHei', sans-serif; }
-        body { background-color: #f9f7f3; color: #333; line-height: 1.6; }
-        .container { width: 1200px; margin: 0 auto; padding: 0 20px; }
-        /* 头部样式 */
-        header { background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 999; }
-        .header-top { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
-        .logo { font-size: 24px; font-weight: bold; color: #8B4513; text-decoration: none; }
-        .contact-info span { margin-right: 20px; color: #666; }
-        .contact-info a { color: #8B4513; text-decoration: none; }
-        nav { padding: 15px 0; }
-        .nav-list { display: flex; list-style: none; justify-content: center; gap: 40px; }
-        .nav-list li a { text-decoration: none; color: #333; font-size: 16px; font-weight: 500; transition: color 0.3s; }
-        .nav-list li a:hover { color: #8B4513; }
-        /*  banner样式 */
-        .banner { height: 500px; background: url('https://img.pexels.com/photos/1194420/pexels-photo-1194420.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover no-repeat; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .banner-mask { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); }
-        .banner-content { position: relative; z-index: 2; color: #fff; }
-        .banner-content h1 { font-size: 48px; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
- .banner-content p { font-size: 18px; max-width: 800px; margin: 0 auto 30px; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-        .btn { display: inline-block; padding: 12px 30px; background-color: #8B4513; color: #fff; border: none; border-radius: 50px; text-decoration: none; font-size: 16px; transition: background-color 0.3s; }
-        .btn:hover { background-color: #6d3311; }
-        /* 手工启智板块 */
-        .handcraft-vision { padding: 80px 0; background-color: #fff; }
-        .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title h2 { font-size: 32px; color: #333; margin-bottom: 15px; }
-        .section-title .line { width: 80px; height: 3px; background-color: #8B4513; margin: 0 auto; }
-        .vision-content { display: flex; align-items: center; gap: 50px; }
-        .vision-img { flex: 1; }
-        .vision-img img { width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .vision-text { flex: 1; font-size: 16px; line-height: 1.8; }
-        .vision-text p { margin-bottom: 20px; }
-        /* 手工类别板块 */
-        .handcraft-types { padding: 80px 0; background-color: #f9f7f3; }
-        .types-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 30px; }
-        .type-card { background-color: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
-        .type-card:hover { transform: translateY(-5px); }
-        .type-img { height: 200px; overflow: hidden; }
-        .type-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-        .type-card:hover .type-img img { transform: scale(1.1); }
-        .type-info { padding: 20px; text-align: center; }
-        .type-info h3 { font-size: 18px; margin-bottom: 10px; color: #333; }
-        .type-info p { color: #666; font-size: 14px; }
-        /* 文旅融合板块 */
-        .culture-tourism { padding: 80px 0; background-color: #fff; }
-        .tourism-content { display: flex; flex-direction: column; gap: 40px; }
-        .tourism-item { display: flex; align-items: center; gap: 40px; }
-        .tourism-item:nth-child(even) { flex-direction: row-reverse; }
-        .tourism-img { flex: 1; }
-        .tourism-img img { width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .tourism-text { flex: 1; }
-        .tourism-text h3 { font-size: 24px; margin-bottom: 15px; color: #333; }
-        .tourism-text p { font-size: 16px; color: #666; line-height: 1.8; margin-bottom: 20px; }
-        /* 留言交流板块 */
-        .message-board { padding: 80px 0; background-color: #f9f7f3; }
-        .message-container { display: flex; gap: 40px; }
-        .message-form { flex: 1; background-color: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .message-form h3 { font-size: 20px; margin-bottom: 20px; color: #333; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; color: #666; font-weight: 500; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #eee; border-radius: 5px; font-size: 16px; resize: none; }
-        .form-group textarea { height: 150px; }
-        .message-list { flex: 1; background-color: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: fit-content; }
-        .message-list h3 { font-size: 20px; margin-bottom: 20px; color: #333; }
-        .message-item { padding: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px; }
-        .message-item:last-child { border-bottom: none; margin-bottom: 0; }
-        .message-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .message-name { font-weight: 500; color: #333; }
-        .message-time { font-size: 14px; color: #999; }
-        .message-content { color: #666; line-height: 1.6; }
-        /* 底部样式 */
-        footer { background-color: #333; color: #fff; padding: 50px 0 20px; }
-        .footer-content { display: flex; justify-content: space-between; margin-bottom: 40px; }
-        .footer-col { flex: 1; margin-right: 40px; }
-        .footer-col:last-child { margin-right: 0; }
-        .footer-col h3 { font-size: 18px; margin-bottom: 20px; position: relative; padding-bottom: 10px; }
-        .footer-col h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 2px; background-color: #8B4513; }
-        .footer-col p { margin-bottom: 15px; line-height: 1.7; color: #ccc; }
-        .footer-col .link-list { list-style: none; }
-        .footer-col .link-list li { margin-bottom: 10px; }
-        .footer-col .link-list li a { color: #ccc; text-decoration: none; transition: color 0.3s; }
-        .footer-col .link-list li a:hover { color: #8B4513; }
-        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid #444; color: #ccc; font-size: 14px; }
-        /* 响应式样式 */
- @media (max-width: 1200px) {
-            .container { width: 90%; }
-            .types-container { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .vision-content, .tourism-item, .message-container, .footer-content { flex-direction: column; gap: 30px; }
-            .tourism-item:nth-child(even) { flex-direction: column; }
-            .nav-list { gap: 20px; flex-wrap: wrap; justify-content: flex-start; }
-            .banner-content h1 { font-size: 36px; }
-            .footer-col { margin-right: 0; margin-bottom: 30px; }
-        }
-    </style>
-</head>
-<body>
-    <!-- 头部 -->
-    <header>
-        <div class="container">
-            <div class="header-top">
-                <a href="#" class="logo">指尖暖光·手工启智</a>
-                <div class="contact-info">
-                    <span>地址：贵州省毕节市</span>
-                    <span>电话：<a href="tel:15739566988">15739566988</a></span>
-</div>
-            </div>
-            <nav>
-                <ul class="nav-list">
-                    <li><a href="#home">首页</a></li>
-                    <li><a href="#vision">手工启智</a></li>
-<li><a href="#types">手工类别</a></li>
-                    <li><a href="#culture">文旅融合</a></li>
-                    <li><a href="#message">留言交流</a></li>
-<li><a href="#contact">联系我们</a></li>
-                </ul>
-            </nav>
-        </div>
-</header>
-    <!-- 首页banner -->
-    <section class="banner" id="home">
-        <div class="banner-mask"></div>
-        <div class="banner-content">
-            <h1&gt;用指尖编织温暖，用手工点亮童年&lt;/h1&gt;
-            <p>源于大山深处的初心，让每一个孩子都能通过手工收获快乐、建立自信，摆脱屏幕依赖，触摸真实的美好</p>
-            <a href="#types" class="btn">探索手工世界</a>
-        </div>
-    </section>
-    <!-- 手工启智 -->
-    <section class="handcraft-vision" id="vision">
-        <div class="container">
-            <div class="section-title">
-                <h2>手工启智·初心缘起</h2>
-                <div class="line"></div>
-</div>
-            <div class="vision-content">
-                <div class="vision-img">
-                    <img src="https://img.pexels.com/photos/5439438/pexels-photo-5439438.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="手工启智初心">
-                </div>
-                <div class="vision-text">
-<p>我来自大山深处的一个小山村。村里的孩子大多是留守儿童，从我记事起，老人无力看护，一部手机就成了寻常的安抚，手机成了孩子们的童年，这样的童年似乎变得索然无味，也让孩子们变得越发孤独和不语。那时的我是一个不爱交流的孩子，难以向身边的人敞开心扉，心中仿佛只有自己的存在，身边的人也时常闲言碎语，说自己是一个不爱交流的孩子。</p>
-<p>后来上了学，开始接触了手工，逐渐发现做手工的这个过程，让我渐渐变得有耐心，在大功告成的那一刻，也让我有了强烈的分享欲，向身边的朋友和亲人分享着自己的作品，也常常得到夸赞，这让没有童年稚气的我，在今后的生活里，越来越自信大方。</p>
-                    <p>源于小时候的经历，长大后的我坚定的选择了学前教育，偶然刷到XX博主发布的一条短视频，得知当前中国存在约200万感统失调伴自闭症，以及约2300万感统失调伴多动症的幼儿，短视频中主人公的母亲说“他不擅长拥抱世界，那我就把世界抱给他。”这句话深深地触动了我，因此，我萌生了让所有的孩子都能通过手工真正收获快乐与成长。</p>
-<p>我知道，想把他们从屏幕里拉回来，得从指尖开始，用小手重新触摸内心世界。于是我选择手工。它，让坐不住的孩子安静下来，让不敢抬头的孩子举起作品，有了强烈的分享欲，让眼神空洞的孩子重新亮了眼，有了满满的成就感。一双手，能点亮一段童年，一个作品，能带来自信，我愿用手工，把他们的黯淡光阴，一寸寸编成闪闪发光的日子。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- 手工类别 -->
-    <section class="handcraft-types" id="types">
-        <div class="container">
-            <div class="section-title">
-                <h2>多样手工·快乐成长</h2>
-                <div class="line"></div>
-            </div>
-            <div class="types-container">
-                <!-- 编织类 -->
-                <div class="type-card">
- <div class="type-img">
-<img src="https://img.pexels.com/photos/1058019/pexels-photo-1058019.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="编织类手工">
-</div>
-                    <div class="type-info">
-                        <h3>编织类</h3>
-<p>包含毛线编织、绳编等，锻炼手部精细动作，培养耐心与专注力，成品可作为装饰或实用小物件。</p>
-                    </div>
-                </div>
-                <!-- 缝制类 -->
-                <div class="type-card">
- <div class="type-img">
-<img src="https://img.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="缝制类手工">
-                    </div>
-                    <div class="type-info">
- <h3>缝制类</h3>
-                        <p>涵盖布艺缝制、玩偶制作等，提升动手能力与创造力，让孩子在一针一线中感受创作的乐趣。</p>
-                    </div>
-                </div>
-                <!-- 雕刻类 -->
-                <div class="type-card">
-                    <div class="type-img">
-                        <img src="https://img.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="雕刻类手工">
- </div>
-<div class="type-info">
-<h3>雕刻类</h3>
- <p>以软质材料雕刻为主，适合儿童操作，培养空间想象力与手部控制力，感受雕刻艺术的独特魅力。</p>
-</div>
-</div>
-                <!-- 剪折类 -->
-                <div class="type-card">
-                    <div class="type-img">
- <img src="https://img.pexels.com/photos/2041541/pexels-photo-2041541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="剪折类手工">
- </div>
-<div class="type-info">
-<h3>剪折类</h3>
-                        <p>包括剪纸、折纸等传统手工，简单易操作，激发创造力，传承中华传统文化，提升审美能力。</p>
-</div>
-                </div>
-                <!-- 塑形类 -->
- <div class="type-card">
-<div class="type-img">
-<img src="https://img.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="塑形类手工">
-                    </div>
-                    <div class="type-info">
-<h3>塑形类</h3>
-                        <p>使用彩泥、黏土等材料，自由塑形，释放孩子的想象力，锻炼手部协调能力，打造专属创意作品。</p>
-                    </div>
-                </div>
-                <!-- 木工拼装类 -->
-                <div class="type-card">
-                    <div class="type-img">
-                        <img src="https://img.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="木工拼装类手工">
-                    </div>
-                    <div class="type-info">
- <h3>木工拼装类</h3>
-                        <p>简易木工拼装套件，培养逻辑思维与动手能力，让孩子在拼装过程中感受结构之美，收获成就感。</p>
-                    </div>
-                </div>
-                <!-- 绘画装饰类 -->
-                <div class="type-card">
-<div class="type-img">
-<img src="https://img.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="绘画装饰类手工">
-</div>
-                    <div class="type-info">
-                        <h3>绘画装饰类</h3>
-<p>涵盖水彩、彩铅、手工装饰等，提升审美与色彩感知能力，让孩子用画笔表达内心世界，点缀生活。</p>
-                    </div>
-                </div>
-                <!-- 更多手工 -->
-                <div class="type-card">
-                    <div class="type-img">
-                        <img src="https://img.pexels.com/photos/434249/pexels-photo-434249.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="更多手工">
-                    </div>
-                    <div class="type-info">
-                        <h3>更多手工</h3>
-                        <p>不断更新各类创意手工，适配不同年龄段孩子，让手工陪伴孩子成长的每一个阶段。&lt;/p&gt;
-                    </div>
-                </div>
-            </div>
-        </div>
+ <html lang="zh-CN">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>巧手启智·育幼成长 — 手护成长行动队</title>
+     <style>
+         * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+             font-family: "Microsoft YaHei", sans-serif;
+         }
+         :root {
+             --orange: #FF9A3C;
+             --green: #8CD790;
+             --white: #FFFDF5;
+             --gray: #333;
+         }
+         body {
+             background: var(--white);
+             color: #333;
+         }
+         header {
+             background: linear-gradient(90deg, var(--orange), var(--green));
+             padding: 16px 20px;
+             position: sticky;
+             top: 0;
+             z-index: 999;
+         }
+         .logo {
+             color: white;
+             font-size: 20px;
+             font-weight: bold;
+         }
+         nav {
+             margin-top: 10px;
+         }
+         nav a {
+             color: white;
+             margin: 0 10px;
+             text-decoration: none;
+             font-size: 14px;
+         }
+         .banner {
+             width: 100%;
+             height: 220px;
+             background: url("https://pic.baike.com/social/photo/8d1548f62c1a49548567a05222222222.jpeg") center/cover;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             color: white;
+             font-size: 22px;
+             font-weight: bold;
+             text-shadow: 0 0 5px rgba(0,0,0,0.3);
+         }
+         .section {
+             padding: 25px 20px;
+             max-width: 1000px;
+             margin: auto;
+         }
+         .section h2 {
+             color: var(--orange);
+             margin-bottom: 15px;
+             border-left: 5px solid var(--green);
+             padding-left: 10px;
+         }
+         .card-box {
+             display: flex;
+             flex-wrap: wrap;
+             gap: 15px;
+             margin-top: 15px;
+         }
+         .card {
+             flex: 1;
+             min-width: 280px;
+             background: white;
+             border-radius: 12px;
+             padding: 15px;
+             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+         }
+         .card img {
+             width: 100%;
+             height: 160px;
+             object-fit: cover;
+             border-radius: 8px;
+             margin-bottom: 10px;
+         }
+         footer {
+             background: #333;
+             color: white;
+             text-align: center;
+             padding: 20px;
+             margin-top: 30px;
+             font-size: 14px;
+         }
+     </style>
+ </head>
+ <body>
+ <!-- 顶部导航 -->
+ <header>
+     <div class="logo">巧手启智·育幼成长 — 手护成长行动队</div>
+     <nav>
+         <a href=" ">首页</a >
+         <a href="#about">项目概述</a >
+         <a href="#value">核心价值</a >
+         <a href="#product">产品服务</a >
+         <a href="#solution">痛点方案</a >
+         <a href="#case">成果案例</a >
+         <a href="#team">团队介绍</a >
+         <a href="#business">商业模式</a >
+         <a href="#future">未来规划</a >
+         <a href="#contact">联系我们</a >
+     </nav>
+ </header>
+ <!-- 1 首页 -->
+ <section id="home" class="section">
+     <div class="banner">巧手启智，育幼成长｜用手工守护每一个孩子快乐成长</div>
+     <h2>项目核心亮点</h2>
+     <div class="card-box">
+         <div class="card">
+             < img src="https://pic.baike.com/social/photo/8d1548f62c1a49548567a05222222222.jpeg" alt="分龄课程">
+             <h3>3-6岁分龄手工课程</h3>
+         </div>
+         <div class="card">
+             < img src="https://pic.baike.com/social/photo/8d1548f62c1a49548567a05333333333.jpeg" alt="感统干预">
+             <h3>感统失调干预与心理治愈</h3>
+         </div>
+         <div class="card">
+             < img src="https://pic.baike.com/social/photo/8d1548f62c1a49548567a05444444444.jpeg" alt="乡村振兴">
+             <h3>乡村振兴·就近就业</h3>
+         </div>
+         <div class="card">
+             < img src="https://pic.baike.com/social/photo/8d1548f62c1a49548567a05555555555.jpeg" alt="材料包">
+             <h3>普惠可复制·易落地</h3>
+         </div>
+     </div>
  </section>
-    <!-- 文旅融合板块 -->
-    <section class="culture-tourism" id="culture">
-        <div class="container">
-            <div class="section-title">
- <h2>文旅融合·手工传情</h2>
-                <div class="line"></div>
-            </div>
-            <div class="tourism-content">
-                <div class="tourism-item">
-                    <div class="tourism-img">
-                        <img src="https://img.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="乡村手工文旅">
-                    </div>
-                    <div class="tourism-text">
- <h3>乡村手工文旅体验</h3>
-                        <p>依托贵州毕节大山深处的乡村资源，打造手工文旅体验项目，让城市孩子走进乡村，感受自然之美，亲手制作具有当地特色的手工制品，传承乡村民俗文化。</p>
- <p>体验项目涵盖传统编织、乡土布艺等，邀请当地老人现场指导，让孩子在体验中了解乡村文化，感受手工的温度，促进城乡孩子的交流与成长。</p>
-                        <a href="#" class="btn">了解体验详情</a>
-                    </div>
-                </div>
-                <div class="tourism-item">
-                    <div class="tourism-img">
-<img src="https://img.pexels.com/photos/267569/pexels-photo-267569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="手工文旅研学">
-                    </div>
-                    <div class="tourism-text">
-                        <h3>手工文旅研学课程</h3>
-                        <p>结合毕节当地文旅资源，开设手工研学课程，将手工制作与文化传承、自然探索相结合，让孩子在研学中提升动手能力、文化素养与团队协作能力。</p>
-                        <p>课程针对不同年龄段设计，包含手工技艺学习、乡村文化探访、自然观察等环节，让孩子在实践中收获知识与快乐，传承中华优秀传统文化。</p>
-                        <a href="#" class="btn">报名研学课程</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- 留言交流板块 -->
-    <section class="message-board" id="message">
-        <div class="container">
-            <div class="section-title">
-                <h2>留言交流·共话成长</h2>
-                <div class="line"></div>
-            </div>
-            <div class="message-container">
-<div class="message-form">
-                    <h3>留下你的心声</h3>
- <form action="#" method="post">
-                        <div class="form-group">
-                            <label for="name">姓名</label>
-                            <input type="text" id="name" name="name" placeholder="请输入你的姓名" required>
-</div>
-                        <div class="form-group">
-                            <label for="phone">电话</label>
-                            <input type="tel" id="phone" name="phone" placeholder="请输入你的电话" required>
-                        </div>
-                        <div class="form-group">
-<label for="message">留言内容</label>
-                            <textarea id="message" name="message" placeholder="请留下你的想法、建议或疑问..." required></textarea>
-</div>
-                        <button type="submit" class="btn">提交留言</button>
-                    </form>
-                </div>
-                <div class="message-list">
-                    <h3>留言展示</h3>
-<div class="message-item">
-<div class="message-header">
-                            <span class="message-name">李女士</span>
-                            <span class="message-time">2025年12月15日 14:30</span>
-                        </div>
-                        <div class="message-content">
-                            孩子参加了手工体验课，变得比以前开朗多了，也愿意主动分享自己的作品，非常感谢你们的用心，希望能多推出一些适合留守儿童的手工项目！
-                        </div>
-                    </div>
-                    <div class="message-item">
-<div class="message-header">
-<span class="message-name">张先生</span>
-                            <span class="message-time">2025年11月28日 09:15</span>
-                        </div>
-                        <div class="message-content">
-                            文旅融合的理念特别好，带孩子参加了乡村手工研学，不仅学会了编织技巧，还了解了毕节的乡村文化，收获满满，下次还会报名！
-                        </div>
-                    </div>
+ <!-- 2 项目概述 -->
+ <section id="about" class="section">
+     <h2>项目概述</h2>
+     <p>本项目面向3-6岁幼儿，以手工+美育+感统干预为核心，面向普通幼儿与个体差异幼儿提供成长支持，同时联动乡村振兴，带动群众就近就业，实现育幼+兴村双重赋能。</p >
+     <div class="card-box">
+         <div class="card">< img src="https://pic.baike.com/social/photo/flow.png" alt="流程图"><p>项目逻辑流程图</p ></div>
+         <div class="card">< img src="https://pic.baike.com/social/photo/sense.png" alt="感统黄金期"><p>感统发展黄金期科普</p ></div>
+         <div class="card">< img src="https://pic.baike.com/social/photo/rural.png" alt="乡村调研"><p>乡村实地调研</p ></div>
+     </div>
+ </section>
+ <!-- 3 核心价值 -->
+ <section id="value" class="section">
+     <h2>核心价值与社会使命</h2>
+     <div class="card-box">
+         <div class="card">< img src="https://pic.baike.com/social/photo/ability.png" alt="能力发展"><p>全面发展价值</p ></div>
+         <div class="card">< img src="https://pic.baike.com/social/photo/therapy.png" alt="心理治愈"><p>心理治愈价值</p ></div>
+         <div class="card">< img src="https://pic.baike.com/social/photo/women.png" alt="乡村就业"><p>乡村就业增收</p ></div>
+     </div>
+ </section>
+ <!-- 4 产品服务 -->
+ <section id="product" class="section">
+     <h2>产品与服务</h2>
+     <div class="card-box">
+         <div class="card">< img src="https://pic.baike.com/social/photo/course.png" alt="课程表"><p>3-6岁分龄课程</p ></div>
+         <div class="card">< img src="https://pic.baike.com/social/photo/material.png" alt="材料包"><p>全套材料包</p ></div>
+         <div class="card">< img src="https://pic.baike.com/social/photo/qrcode.png" alt="视频教程"><p>二维码视频教程</p ></div>
+     </div>
+ </section>
+ <!-- 5 痛点方案 -->
+ <section id="solution" class="section">
+     <h2>项目痛点与解决方案</h2>
+     <div class="card-box">
+         <div class="card">< img src="https://pic.baike.com/social/photo/data.png" alt="感统误区"><p>感统认知误区数据</p ></div>
+         <div class="card">< img src="https://pic.baike.com/social/photo/radar.png" alt="干预对比"><p>干预前后雷达图</p ></div>
+     </div>
+ </section>
+ <!-- 6 成果案例 -->
+ <section id="case" class="section">
+     <h2>项目成果·案例展示</h2>
+     <div class="card-box">
+         <div class="card">< img src="https://pic.baike.com/social/photo/beforeafter.png" alt="干预对比"><p>三大典型干预案例</p ></div>
+         <div class="card">< img src="https://pic.baike.com/social/photo/letter.png" alt="感谢信"><p>家长感谢信</p ></div>
+     </div>
+ </section>
+ <!-- 7 团队 -->
+ <section id="team" class="section">
+     <h2>育人成效与团队</h2>
+     <div class="card-box">
+         <div class="card">< img src="https://pic.baike.com/social/photo/group.png" alt="团队"><p>团队合影</p ></div>
+         <div class="card">< img src="https://pic.baike.com/social/photo/cert.png" alt="证书"><p>获奖证书</p ></div>
+     </div>
+ </section>
+ <!-- 8 商业模式 -->
+ <section id="business" class="section">
+     <h2>商业模式与合作</h2>
+     <p>模式：产品销售+定制服务+公益联动+乡村振兴</p >
+     <div class="card-box">
+         <div class="card">< img src="https://pic.baike.com/social/photo/cooperate.png" alt="合作"><p>合作意向实拍</p ></<h2>未来规划</h2>
+     <p>短期：打磨样板；中期：全省复制；长期：全国布局</p >
+     <div class="card-box">
+         <div class="card">< img src="https://pic.baike.com/social/photo/map.png" alt="全国布局"><p>发展路线图</p ></div>
+     </div>
+ </section>
+ <!-- 10 联系我们 -->
+ <section id="contact" class="section">
+     <h2>联系我们</h2>
+     <p>电话：131XXXX6766</p >
+     <p>邮箱：shouhu@163.com</p >
+     <p>地址：贵州省毕节市七星关区</p >
+ </section>
+ <footer>
+     巧手启智·育幼成长 — 手护成长行动队 © 2026 版权所有
+ </footer>
+ </bodydiv>
+     </div>
+ </section>
+ <!-- 9 未来规划 -->
+ <section id="future" <h2>未来规划</h2>
+     <p>短期：打磨样板；中期：全省复制；长期：全国布局</p >
+     <div class="card-box">
+         <div class="card">< img src="https://pic.baike.com/social/photo/map.png" alt="全国布局"><p>发展路线图</p ></div>
+     </div>
+ </section>
+ <!-- 10 联系我们 -->
+ <section id="contact" class="section">
+     <h2>联系我们</h2>
+     <p>电话：131XXXX6766</p >
+     <p>邮箱：shouhu@163.com</p >
+     <p>地址：贵州省毕节市七星关区</p >
+ </section>
+ <footer>
+     巧手启智·育幼成长 — 手护成长行动队 © 2026 版权所有
+ </footer>
+ </body>
+</html>
